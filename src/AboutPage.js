@@ -6,6 +6,7 @@ export default class AboutPage extends Component {
   constructor() {
     super()
 
+    console.log('About: constructor')
     this.state = {
       counter: 0
     }
@@ -32,7 +33,21 @@ export default class AboutPage extends Component {
     })
   }
 
+  componentDidMount() {
+    console.log("About: componentDidMount")
+  }
+
+  componentDidUpdate() {
+    console.log("About: componentDidUpdate")
+  }
+
+  componentWillUnmount() {
+    console.log('About: componentWillUnmount')
+  }
+
   render() {
+
+    console.log('About: render')
     return (
       <div>
         <h2>{this.props.message}</h2>
