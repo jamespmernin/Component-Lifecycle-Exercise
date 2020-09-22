@@ -1,63 +1,32 @@
 import React, { Component } from 'react'
+import { Link, Route, Switch } from 'react-router-dom';
 import HomePage from './HomePage';
 import AboutPage from './AboutPage';
 import ErrorPage from './ErrorPage';
 
 export default class App extends Component {
-  constructor() {
-    super()
-    
-    this.state = {
-      page: 'home'
-    }
-
-    this.setPageToHome = this.setPageToHome.bind(this)
-    this.setPageToAbout = this.setPageToAbout.bind(this)
-  }
-
-  setPageToHome(e) {
-    e.preventDefault()
-    this.setState({
-      page: 'home',
-    })
-  }
-
-  setPageToAbout(e) {
-    e.preventDefault()
-    this.setState({
-      page: 'about',
-    })
-  }
   render() {
-    let Page
-    let pageTitle
-
-    switch (this.state.page) {
-      case 'home':
-        Page = HomePage
-        pageTitle = "Home"
-        break;
-      case 'about':
-        Page = AboutPage
-        pageTitle = "About"
-        break;
-      default:
-        Page = ErrorPage
-        pageTitle = "Error"
-        break;
-    }
-    
     return (
       <div className="page-container">
         <header>
           <h1>Component Lifecycle</h1>
           <nav>
-            <a href="/" onClick={this.setPageToHome}>Home</a>
-            <a href="/about" onClick={this.setPageToAbout}>About</a>
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
           </nav>
         </header>
         <main>
-          <Page message={pageTitle}></Page>
+          <Switch>
+            <Route exact path="/">
+              <HomePage message="Home" />
+            </Route>
+            <Route path="/about">
+              <AboutPage message="About" />
+            </Route>
+            <Route path="/:notfound">
+              <ErrorPage message="Error" />
+            </Route>
+          </Switch>
         </main>
       </div>
     )

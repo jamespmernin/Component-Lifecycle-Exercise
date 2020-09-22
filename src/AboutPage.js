@@ -23,7 +23,7 @@ export default class AboutPage extends Component {
     })
   }
 
-  decrementCounter() {
+  decrementCounter = () => {
     let { counter } = this.state
     counter--
 
